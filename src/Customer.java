@@ -8,8 +8,10 @@ public class Customer {
 	 */
 	private int ID;
 	/**
-	 * Name of the customer.
-	 */
+     * Name of the customer.-+
+     *  	
+     * 
+     */
 	private String name;
 	/**
 	 * Age of the customer.

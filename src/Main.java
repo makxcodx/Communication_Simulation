@@ -12,11 +12,11 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);
 
-        System.out.println("Enter number of customers: ");
+        System.out.print("Enter number of customers: ");
         C = reader.nextInt();
-        System.out.println("Enter number of operations: ");
+        System.out.print("Enter number of operations: ");
         O = reader.nextInt();
-        System.out.println("Enter number of events: ");
+        System.out.print("Enter number of events: ");
         N = reader.nextInt();
 
         customers = new Customer[C];
@@ -29,7 +29,18 @@ public class Main {
         // Read inputs and operate accordingly.
         try {
             for (int line_no = 1; line_no <= N; line_no++) {
-                System.out.println("Enter Operation type: ");
+                System.out.println("----------------------------");
+                System.out.println("  Communication Simulation  ");
+                System.out.println("-------------Menu-----------");
+                System.out.println("1. Create New Customer ");
+                System.out.println("2. Create New Operator");
+                System.out.println("3. Talk");
+                System.out.println("4. Send Message");
+                System.out.println("5. Connect to Internet");
+                System.out.println("6. Pay Bills");
+                System.out.println("7. Change Operator");
+                System.out.println("8. Change Bill Limit");
+                System.out.print("Choose Operation:");
                 final int operation_type = reader.nextInt();
                 switch (operation_type) {
                     case 1: { // Input 1 : Creating a new Customer.
@@ -47,8 +58,8 @@ public class Main {
                                     "Invalid operator ID in operation " + operation_type + ", line " + line_no + ".");
                         if (cust_cnt >= C)
                             throw new ArrayIndexOutOfBoundsException("Number of customers exceeds C.");
-
                         customers[cust_cnt] = new Customer(cust_cnt, name, age, operators[oper_ID], limitingAmount);
+                        System.out.println("Customer created successfullty");
                         cust_cnt++;
                         break;
                     }
@@ -66,6 +77,7 @@ public class Main {
                             throw new ArrayIndexOutOfBoundsException("Number of operators exceeds O.");
                         operators[oper_cnt] = new Operator(oper_cnt, talkingCharge, messageCost, networkCharge,
                                 discountRate);
+                        System.out.println("Operator created successfully");
                         oper_cnt++;
                         break;
                     }
@@ -170,15 +182,6 @@ public class Main {
 
         reader.close();
 
-        // PrintStream outstream1; // Create another PrintStream object in the main
-        // class for printing out results.
-        // try {
-        // outstream1 = new PrintStream(outFile);
-        // } catch(FileNotFoundException e2) {
-        // e2.printStackTrace();
-        // return;
-        // }
-
         // Print results.
 
         /*
@@ -191,7 +194,6 @@ public class Main {
          * Internet Usage>
          */
         for (final Operator oper : operators)
-            // outstream1.println(oper.toString());
             System.out.println(oper.toString());
 
         Customer mostTalkingCust = customers[0]; // The customer that talks the most.
@@ -217,7 +219,6 @@ public class Main {
                 mostConnectingCust = cust; // Find the customer that connects to the Internet the most.
 
             // Print out each customer with their relevant information.
-            // outstream1.println(cust.toString());
             System.out.println(cust.toString());
         }
 
@@ -228,8 +229,6 @@ public class Main {
          * <Name of the Customer> : <Talking Time>
          * (If 2 Customers are equal, then print out the one that has smaller ID.)
          */
-        // outstream1.println(mostTalkingCust.getName() + " : " +
-        // mostTalkingCust.getTotalSpentTalkingTime());
         System.out.println(mostTalkingCust.getName() + " : " + mostTalkingCust.getTotalSpentTalkingTime());
 
         /*
@@ -239,8 +238,6 @@ public class Main {
          * <Name of the Customer> : <Number of Messages>
          * (If 2 Customers are equal, then print out the one that has smaller ID.)
          */
-        // outstream1.println(mostMessagingCust.getName() + " : " +
-        // mostMessagingCust.getTotalSentMessages());
         System.out.println(mostMessagingCust.getName() + " : " + mostMessagingCust.getTotalSentMessages());
         /*
          * 5) Print out name of the Customer that connects the Internet the most and the
@@ -249,10 +246,7 @@ public class Main {
          * <Name of the Customer> : <MBs of Internet Usage>
          * (If 2 Customers are equal, then print out the one that has smaller ID.)
          */
-        // outstream1.printf("%s : %.2f\n", mostConnectingCust.getName(),
-        // mostConnectingCust.getTotalInternetUsage());
         System.out.printf("%s : %.2f\n", mostConnectingCust.getName(), mostConnectingCust.getTotalInternetUsage());
-        // outstream1.close();
 
         // DO_NOT_EDIT_ANYTHING_BELOW_THIS_LINE
     }
